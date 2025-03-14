@@ -63,8 +63,11 @@ class TestBooksCollector:
         collector = BooksCollector()
         collector.add_new_book(book_name)
         collector.set_book_genre(book_name, genre)
-        actual_genre = collector.get_book_genre(book_name)
-        assert actual_genre == expected_genre
+        books_genre_dict = collector.get_books_genre()
+        actual_genre_from_dict = books_genre_dict.get(book_name)
+        actual_genre_from_method = collector.get_book_genre(book_name)
+        assert actual_genre_from_dict == expected_genre
+        assert actual_genre_from_method == expected_genre
 
     def test_get_book_genre_non_existing_book(self):
         collector = BooksCollector()
